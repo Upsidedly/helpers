@@ -9,7 +9,7 @@
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "./lib",
-    "rootDir": "./source",
+    "rootDirs": ["./source", "./test"],
 
     /* Strict Type-Checking Options */
     "strict": true,

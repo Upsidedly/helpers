@@ -44,7 +44,7 @@ export const logic = {
 	nand(a: unknown, b: unknown): boolean {
 		return !(a && b);
 	},
-};
+} as const;
 
 /**
  * A module for generating random secure values
@@ -59,7 +59,7 @@ export const random = {
      * @returns {number} - The generated random integer.
      * @throws {TypeError} - If the provided arguments are not of type number.
      */
-	int(min: number, max: number): number {
+	int(min: number, max?: number): number {
 		if ((!Number.isInteger(min))
             || (max && !Number.isInteger(max))
 		) {
@@ -80,6 +80,10 @@ export const random = {
      */
 	next(): number {
 		return webcrypto.getRandomValues(new Uint32Array(1))[0] / (2 ** 32);
+	},
+
+	pick<T>(array: T[]): T {
+		return array[this.int(array.length + 1)];
 	},
 };
 
