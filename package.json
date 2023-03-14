@@ -8,7 +8,8 @@
         "url": "https://github.com/Upsidedly/helpers.git"
     },
     "scripts": {
-        "format": "eslint --fix --ext .ts source"
+        "format": "eslint --fix --ext .ts source",
+        "test": "mocha lib/test/index.spec.js"
     },
     "keywords": [],
     "author": "",
