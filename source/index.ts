@@ -2,10 +2,11 @@ import {webcrypto} from 'crypto';
 
 /**
  * Contains logical operations.
+ * @module logic
  */
 export const logic = {
 	/**
-     * Performs the XOR operation on two values.
+     * Performs the XOR (EXCLUSIVE OR) operation on two values.
      *
      * @param {unknown} a - The first value to XOR.
      * @param {unknown} b - The second value to XOR.
@@ -15,7 +16,7 @@ export const logic = {
 		return Boolean((a && !b) || (!a && b));
 	},
 	/**
-     * Performs the NOR operation on two values.
+     * Performs the NOR (NOT OR) operation on two values.
      *
      * @param {unknown} a - The first value to NOR.
      * @param {unknown} b - The second value to NOR.
@@ -25,7 +26,7 @@ export const logic = {
 		return !(a || b);
 	},
 	/**
-     * Performs the XNOR operation on two values.
+     * Performs the XNOR (EXCLUSIVE NOT OR) operation on two values.
      *
      * @param {unknown} a - The first value to XNOR.
      * @param {unknown} b - The second value to XNOR.
@@ -35,7 +36,7 @@ export const logic = {
 		return a === b;
 	},
 	/**
-     * Performs the NAND operation on two values.
+     * Performs the NAND (NOT AND) operation on two values.
      *
      * @param {unknown} a - The first value to NAND.
      * @param {unknown} b - The second value to NAND.
@@ -46,6 +47,7 @@ export const logic = {
 	},
 } as const;
 
+export const {xor, nor, xnor, nand} = logic;
 /**
  * A module for generating random secure values
  * @module random
@@ -83,7 +85,7 @@ export const random = {
 	},
 
 	pick<T>(array: T[]): T {
-		return array[this.int(array.length + 1)];
+		return array[this.int(array.length)];
 	},
 };
 
