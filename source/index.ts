@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import {webcrypto} from 'crypto';
 
 /**
@@ -48,6 +49,14 @@ export const logic = {
 } as const;
 
 export const {xor, nor, xnor, nand} = logic;
+
+export enum IdType {
+	Numeric = 'NUMERIC',
+	Aphabetic = 'ALPHABETIC',
+	AlphaNumeric = 'ALPHA_NUMERIC',
+	AlphaNumericSpecial = 'ALPHA_NUMERIC_SPECIAL',
+}
+
 /**
  * A module for generating random secure values
  * @module random
@@ -86,6 +95,22 @@ export const random = {
 
 	pick<T>(array: T[]): T {
 		return array[this.int(array.length)];
+	},
+
+	id(length: number, idType: IdType = IdType.AlphaNumeric) {
+		let result = '';
+		const idTypes = {
+			NUMERIC: '0123456789',
+			ALPHABETIC: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
+			ALPHA_NUMERIC: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
+			ALPHA_NUMERIC_SPECIAL: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=<>,.;\':"[]{}\\|/?`~',
+		};
+
+		for (let counter = 0; counter < length; counter += 1) {
+			result += idTypes[idType].charAt(this.next() * idTypes[idType].length);
+		}
+
+		return result;
 	},
 };
 

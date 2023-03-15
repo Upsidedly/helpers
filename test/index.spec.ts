@@ -120,4 +120,27 @@ describe('module - random', () => {
 			expect(b.every(n => n <= 2600 && n >= 2400)).to.be.equal(true);
 		});
 	});
+
+	describe('id', () => {
+		it('should generate unique ids of the correct length when given different inputs of 10, 20...90, 100', () => {
+			for (let length = 10; length <= 100; length += 10) {
+				let final = true;
+				const arr = Array.from({length: 100}, () => random.id(length));
+				let prev = arr[0];
+
+				for (const id of arr.slice(1)) {
+					if (id === prev || id.length !== length) {
+						final = false;
+						break;
+					}
+
+					prev = id;
+				}
+
+				console.log(prev);
+
+				expect(final).to.be.equal(true);
+			}
+		});
+	});
 });
