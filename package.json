@@ -1,6 +1,6 @@
 {
     "name": "@upsided/helpers",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "Helper functions for upsided",
     "main": "lib/source/index.js",
     "repository": {
